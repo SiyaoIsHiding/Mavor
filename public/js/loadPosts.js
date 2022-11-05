@@ -14,6 +14,7 @@ function start() {
     nextPosts()
 }
 
+var currentPagePostsNum = 0
 var currentPostsInd = 0
 function nextPosts(){
     fetch("http://localhost:80/posts").then((response) => response.json())
@@ -31,12 +32,8 @@ function nextPosts(){
                 );
             ReactDOM.render(rootElement, document.getElementById("mainContainer"));
             currentPostsInd += len
-            console.log(currentPostsInd)
-            console.log(posts.length)
-            if (currentPostsInd == posts.length) {
-                let btt = document.getElementById("nextButton")
-                btt.style.display = 'none'
-            }
+            currentPagePostsNum = len
+            refreshButtons()
         })
 }
 
@@ -47,7 +44,7 @@ function previousPosts(){
             let len = 5
             let postsElements = new Array(len)
 
-            for (let i = currentPostsInd-len; i < currentPostsInd; i++){
+            for (let i = currentPostsInd-currentPagePostsNum-len; i < currentPostsInd-currentPagePostsNum; i++){
                 postsElements[i] = React.createElement(aPost, {key: posts[i].time+posts[i].body, posttime: posts[i].time, postbody:posts[i].body})
             }
             const rootElement =
@@ -55,13 +52,23 @@ function previousPosts(){
                     React.createElement("tbody", {}, postsElements)
                 );
             ReactDOM.render(rootElement, document.getElementById("mainContainer"));
-            currentPostsInd -= len
-            console.log(currentPostsInd)
-            console.log(posts.length)
-            if (currentPostsInd <= len) {
-                let btt = document.getElementById("previousButton")
-                btt.style.display = 'none'
-            }
+            currentPostsInd -= currentPagePostsNum
+            currentPagePostsNum = len
+            refreshButtons()
         })
 }
-// TODO: refresh previousButton and nextButton
+
+function refreshButtons(){
+    let nbtt = document.getElementById("nextButton")
+    if (currentPostsInd == posts.length) {
+        nbtt.style.display ='none'
+    }else{
+        nbtt.style.display = 'inline'
+    }
+    let pbtt= document.getElementById("previousButton")
+    if (currentPostsInd <= 5) {
+        pbtt.style.display = 'none'
+    }else{
+        pbtt.style.display = 'inline'
+    }
+}
