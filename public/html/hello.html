@@ -29,6 +29,15 @@
             color: #372F2B;
         }
     </style>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script>
+        function start(){
+            const rootElement =
+                React.createElement("dic", {});
+            ReactDOM.render(rootElement, document.getElementById("mainContainer"));
+        }
+    </script>
 </head>
 <body>
 <p>My Diary</p>

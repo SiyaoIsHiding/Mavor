@@ -1,0 +1,29 @@
+body {
+    background-color: #f8edeb;
+}
+
+p.title {
+    font-size: large;
+    font-family: "Comic Sans MS";
+}
+
+table {
+    width: 100%;
+    word-wrap: break-word;
+}
+
+td.time {
+    width: 20vw;
+    background-color: #fae1dd;
+    color: #3e3229;
+    border-right-color: #fec5bb;
+    border-right-style: double;
+    border-right-width: 2px;
+    font-size: small;
+}
+
+td.postBody {
+    width: 100vw;
+    background-color: #fcd5ce;
+    color: #372F2B;
+}
