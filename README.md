@@ -17,3 +17,8 @@
 In the root directory, run command `npm start`. In the browser, access `localhost:80`. 
 Try different browsers and adjust the size of the browser window to see whether the content is displayed in a proper way.
 As the width of the table column is styled based on viewpoint width `vw` and apply `word-wrap`, it will work for most of the users.
+
+
+# React Features
+1. I defined a class of React Component called aPost, which is a table row including two table cells, one for the time of the post, another for the text of the post.
+2. When hitting next and previous buttons, the client-side codes fetch data from the server and render the aPost components by React.
